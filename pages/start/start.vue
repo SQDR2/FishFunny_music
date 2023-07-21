@@ -18,7 +18,7 @@
 				</view>
 			</view>
 			<view class="songList">
-				<view class="song" v-for="(item, index) in hotSongs" :key="item.id">
+				<view class="song" v-for="(item, index) in hotSongs" :key="item.id" @click="toplay(item.id)">
 					<span class="front">
 						<span class="index">{{index+1}}</span>
 						<u--image class="songimg" :src="item.al.picUrl" width="40rpx" height="40rpx" radius="10rpx">
@@ -29,11 +29,13 @@
 				</view>
 			</view>
 		</view>
+		<playbot></playbot>
 	</view>
 </template>
 
 <script>
 	import request from '../../request/index.js'
+	import playbot from '../../components/playbot.vue'
 	let _this = null;
 	export default {
 		data() {
@@ -47,6 +49,9 @@
 			_this = this
 			_this.startInfo = JSON.parse(options.start)
 			_this.getstartSongs()
+		},
+		components:{
+			playbot
 		},
 		methods: {
 			 getstartSongs : async () => {
@@ -63,6 +68,11 @@
 							icon:'error'
 						})
 					})
+			},
+			toplay(id){
+				uni.navigateTo({
+					url:'/pages/playpage/playpage?id='+id+'&play='+true
+				})
 			}
 		}
 	}
@@ -84,6 +94,7 @@
 
 	.hotSongList {
 		font-size: 28rpx;
+		padding-bottom: 100rpx;
 		.hotHeader {
 			display: flex;
 			justify-content: space-between;

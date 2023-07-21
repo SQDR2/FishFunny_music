@@ -58,7 +58,8 @@
 						searchKey: key,
 						page: ++_this.page
 					})
-					.then(res => {''
+					.then(res => {
+						// console.log(res)
 						_this.searchResult.push(...res.data.music)
 					})
 					.catch(err => {
@@ -77,7 +78,7 @@
 			},
 			toplay(id){
 				uni.navigateTo({
-					url:'/pages/playpage/playpage?id='+id
+					url:'/pages/playpage/playpage?id='+id+'&play='+true
 				})
 			}
 		}

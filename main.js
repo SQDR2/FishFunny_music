@@ -5,9 +5,11 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 import uView from '@/uni_modules/uview-ui'
+import store from './store' 
 Vue.use(uView)
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif
